@@ -54,7 +54,7 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
             </Text>
             <Button
               icon={<HeartIcon fill={isFav ? "currentColor" : "none"} />}
-              color="error"
+              color="gradient"
               auto
               ghost={!isFav}
               onClick={handleFavorites}

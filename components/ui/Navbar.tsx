@@ -11,7 +11,7 @@ const Navbar = () => {
         </Link>
       </NextLink>
       <NextLink href="/favorites">
-        <Link color="secondary" block>
+        <Link color="primary" block>
           Favoritos
         </Link>
       </NextLink>
