@@ -11,13 +11,13 @@ const Layout: FC<Props> = ({ children }) => {
     <>
       <Head>
         <title>Pokedex</title>
-        <meta name="author" content="Florencia" />
+        <meta name="author" content="Fl0rchus" />
         <meta name="description" content="Pokedex app created with NextJS" />
       </Head>
       <header>
         <Navbar />
       </header>
-      <main>{children}</main>
+      <main style={{ paddingLeft: 20, paddingRight: 20 }}>{children}</main>
     </>
   );
 };

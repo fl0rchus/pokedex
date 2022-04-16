@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/link-passhref */
 import { Container, Button, Text } from "@nextui-org/react";
-import HeartIcon from "./HeartIcon";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -8,17 +9,21 @@ const Navbar = () => {
       justify="space-between"
       alignItems="center"
       fluid
-      style={{ marginTop: 10 }}
+      style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20 }}
     >
       <div>
-        <Text color="white" h2>
-          Pokedex
-        </Text>
+        <Link href="/">
+          <Text color="white" h2 css={{ cursor: "pointer" }}>
+            Pokedex
+          </Text>
+        </Link>
       </div>
       <div>
-        <Button bordered color="gradient" icon={<HeartIcon />}>
-          Favoritos
-        </Button>
+        <Link href="/favorites">
+          <Button bordered color="gradient" size="sm">
+            Favoritos
+          </Button>
+        </Link>
       </div>
     </Container>
   );

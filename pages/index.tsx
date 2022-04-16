@@ -1,11 +1,29 @@
 import type { GetStaticProps, NextPage } from "next";
-import { allPokemons } from "@api";
+import { pokemonAPI } from "@api";
 import { PokemonIndividual, PokemonsListResponse } from "@interfaces";
 import { Grid } from "@nextui-org/react";
 import PokemonCard from "@components/PokemonCard";
+interface Props {
+  pokemons: PokemonIndividual[];
+}
+
+const Home: NextPage<Props> = ({ pokemons }) => {
+  console.log(pokemons);
+  return (
+    <>
+      <Grid.Container gap={2} css={{ padding: 20 }}>
+        {pokemons.map((item, index) => (
+          <Grid xs={6} sm={3} md={2} xl={1} key={index}>
+            <PokemonCard pokemon={item} />
+          </Grid>
+        ))}
+      </Grid.Container>
+    </>
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { data } = await allPokemons.get<PokemonsListResponse>(
+  const { data } = await pokemonAPI.get<PokemonsListResponse>(
     "/pokemon?limit=24"
   );
   const pokemons: PokemonIndividual[] = data.results.map((item, index) => ({
@@ -20,24 +38,6 @@ export const getStaticProps: GetStaticProps = async () => {
       pokemons: pokemons,
     },
   };
-};
-
-interface Props {
-  pokemons: PokemonIndividual[];
-}
-
-const Home: NextPage<Props> = ({ pokemons }) => {
-  return (
-    <>
-      <Grid.Container gap={2} css={{ padding: 20 }}>
-        {pokemons.map((item, index) => (
-          <Grid xs={6} sm={3} md={2} xl={1} key={index}>
-            <PokemonCard pokemon={item} />
-          </Grid>
-        ))}
-      </Grid.Container>
-    </>
-  );
 };
 
 export default Home;
