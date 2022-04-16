@@ -19,7 +19,7 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
   return (
     <Grid.Container gap={2} css={{ marginTop: 20 }}>
       <Grid xs={12} sm={4}>
-        <Card css={{ padding: 30 }}>
+        <Card css={{ padding: 30 }} hoverable>
           <Card.Body
             css={{
               display: "flex",
@@ -52,8 +52,8 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
                 <Image
                   src={item}
                   alt={`${name} sprite`}
-                  width={100}
-                  height={100}
+                  width={120}
+                  height={120}
                   key={index}
                 />
               ))}

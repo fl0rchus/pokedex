@@ -1,31 +1,21 @@
 /* eslint-disable @next/next/link-passhref */
-import { Container, Button, Text } from "@nextui-org/react";
-import Link from "next/link";
+import NextLink from "next/link";
+import { Text, Link } from "@nextui-org/react";
 
 const Navbar = () => {
   return (
-    <Container
-      display="flex"
-      justify="space-between"
-      alignItems="center"
-      fluid
-      style={{ marginTop: 10, paddingLeft: 20, paddingRight: 20 }}
-    >
-      <div>
-        <Link href="/">
-          <Text color="white" h2 css={{ cursor: "pointer" }}>
-            Pokedex
-          </Text>
+    <nav className="navbar">
+      <NextLink href="/">
+        <Link>
+          <Text h2>Pokedex</Text>
         </Link>
-      </div>
-      <div>
-        <Link href="/favorites">
-          <Button bordered color="gradient" size="sm">
-            Favoritos
-          </Button>
+      </NextLink>
+      <NextLink href="/favorites">
+        <Link color="secondary" block>
+          Favoritos
         </Link>
-      </div>
-    </Container>
+      </NextLink>
+    </nav>
   );
 };
 
