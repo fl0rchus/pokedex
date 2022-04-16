@@ -19,7 +19,9 @@
       "@components/*": ["components/ui/*"],
       "@layout/*": ["components/layout/*"],
       "@styles/*": ["styles/*"],
-      "@themes/*": ["themes/*"]
+      "@themes": ["themes/index"],
+      "@api": ["api/index"],
+      "@interfaces": ["interfaces/index"]
     }
   },
   "include": [
