@@ -21,7 +21,8 @@
       "@styles/*": ["styles/*"],
       "@themes": ["themes/index"],
       "@api": ["api/index"],
-      "@interfaces": ["interfaces/index"]
+      "@interfaces": ["interfaces/index"],
+      "@utils/*": ["utils/*"]
     }
   },
   "include": [

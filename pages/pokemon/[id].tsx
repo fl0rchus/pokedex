@@ -6,8 +6,11 @@ import { Grid, Card, Text, Container, Button } from "@nextui-org/react";
 import HeartIcon from "@components/HeartIcon";
 import Image from "next/image";
 
+import { toggleFavorite } from "@utils/favoritesLocalStorage";
+
 interface Props {
   pokemon: {
+    id: number;
     name: string;
     image: string;
     sprites: [];
@@ -15,7 +18,12 @@ interface Props {
 }
 
 const Pokemon: NextPage<Props> = ({ pokemon }) => {
-  const { name, sprites, image } = pokemon;
+  const { name, sprites, image, id } = pokemon;
+
+  const handleFavorites = () => {
+    toggleFavorite(id);
+  };
+
   return (
     <Grid.Container gap={2} css={{ marginTop: 20 }}>
       <Grid xs={12} sm={4}>
@@ -39,7 +47,12 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
             <Text h1 transform="capitalize">
               {name}
             </Text>
-            <Button icon={<HeartIcon />} color="error" auto>
+            <Button
+              icon={<HeartIcon />}
+              color="error"
+              auto
+              onClick={handleFavorites}
+            >
               Guardar
             </Button>
           </Card.Header>
@@ -78,6 +91,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { data } = await pokemonAPI.get<Pokemon>(`/pokemon/${id}`);
 
   const pokemon = {
+    id: Number(id),
     name: data.forms[0].name,
     image: data.sprites.other?.dream_world.front_default,
     sprites: [
