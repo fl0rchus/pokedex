@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
+
 import { NextPage, GetStaticProps, GetStaticPaths } from "next";
+
 import { pokemonAPI } from "@api";
 import { Pokemon } from "@interfaces";
 
@@ -6,7 +9,7 @@ import { Grid, Card, Text, Container, Button } from "@nextui-org/react";
 import HeartIcon from "@components/HeartIcon";
 import Image from "next/image";
 
-import { toggleFavorite } from "@utils/favoritesLocalStorage";
+import { toggleFavorite, checkFavorite } from "@utils/favoritesLocalStorage";
 
 interface Props {
   pokemon: {
@@ -19,9 +22,11 @@ interface Props {
 
 const Pokemon: NextPage<Props> = ({ pokemon }) => {
   const { name, sprites, image, id } = pokemon;
+  const [isFav, setIsFav] = useState<boolean>(checkFavorite(id));
 
   const handleFavorites = () => {
     toggleFavorite(id);
+    setIsFav(!isFav);
   };
 
   return (
@@ -48,12 +53,13 @@ const Pokemon: NextPage<Props> = ({ pokemon }) => {
               {name}
             </Text>
             <Button
-              icon={<HeartIcon />}
+              icon={<HeartIcon fill={isFav ? "currentColor" : "none"} />}
               color="error"
               auto
+              ghost={!isFav}
               onClick={handleFavorites}
             >
-              Guardar
+              {isFav ? "Guardado" : "Guardar"}
             </Button>
           </Card.Header>
           <Card.Body>
