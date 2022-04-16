@@ -1,11 +1,14 @@
 import type { AppProps } from "next/app";
 import { NextUIProvider } from "@nextui-org/react";
 import { darkTheme } from "@themes/index";
+import Layout from "@layout/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <NextUIProvider theme={darkTheme}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </NextUIProvider>
   );
 }

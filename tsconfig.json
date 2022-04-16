@@ -16,11 +16,17 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["components/*"],
+      "@components/*": ["components/ui/*"],
+      "@layout/*": ["components/layout/*"],
       "@styles/*": ["styles/*"],
       "@themes/*": ["themes/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/ui/HeartIcon.ts"
+  ],
   "exclude": ["node_modules"]
 }
