@@ -3,6 +3,7 @@ import { pokemonAPI } from "@api";
 import { PokemonIndividual, PokemonsListResponse } from "@interfaces";
 import { Grid } from "@nextui-org/react";
 import PokemonCard from "@components/PokemonCard";
+import { PRIMARY_IMAGE_URL } from "@utils/constants";
 interface Props {
   pokemons: PokemonIndividual[];
 }
@@ -28,9 +29,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const pokemons: PokemonIndividual[] = data.results.map((item, index) => ({
     ...item,
     id: index + 1,
-    img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
-      index + 1
-    }.svg`,
+    img: `${PRIMARY_IMAGE_URL}${index + 1}.svg`,
   }));
   return {
     props: {

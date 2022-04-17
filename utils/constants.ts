@@ -1,0 +1,1 @@
+export let PRIMARY_IMAGE_URL: string = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/"
