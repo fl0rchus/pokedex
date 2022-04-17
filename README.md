@@ -11,9 +11,9 @@ Simple app created with NextJS and NextUI
 
 ## Stack
 
-- NextJS
-- NextUI
-- Axios
+- [NextJS](https://nextjs.org)
+- [NextUI](https://nextui.org)
+- [Axios](https://www.npmjs.com/package/axios)
 
 ## API
 
