@@ -6,11 +6,11 @@ import Image from "next/image";
 import { Grid, Card, Text, Container, Button } from "@nextui-org/react";
 import confetti from "canvas-confetti";
 
-import { pokemonAPI } from "@api";
 import { Pokemon } from "@interfaces";
 import { toggleFavorite, checkFavorite } from "@utils/favoritesLocalStorage";
 
 import HeartIcon from "@components/HeartIcon";
+import { getPokemon } from "@utils/getPokemon";
 
 interface Props {
   pokemon: {
@@ -21,7 +21,7 @@ interface Props {
   };
 }
 
-const Pokemon: NextPage<Props> = ({ pokemon }) => {
+const PokemonPage: NextPage<Props> = ({ pokemon }) => {
   const { name, sprites, image, id } = pokemon;
   const [isFav, setIsFav] = useState<boolean>(checkFavorite(id));
 
@@ -100,31 +100,27 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const totalPokemons = [...Array(24)].map((_, index) => `${index + 1}`);
   return {
     paths: totalPokemons.map((id) => ({ params: { id } })),
-    fallback: false,
+    //fallback: false,
+    fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as { id: string };
-  const { data } = await pokemonAPI.get<Pokemon>(`/pokemon/${id}`);
 
-  const pokemon = {
-    id: Number(id),
-    name: data.forms[0].name,
-    image: data.sprites.other?.dream_world.front_default,
-    sprites: [
-      data.sprites.back_default,
-      data.sprites.back_shiny,
-      data.sprites.front_default,
-      data.sprites.front_shiny,
-    ],
-  };
+  const pokemon = await getPokemon(id);
+
+  if (!pokemon) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: {
-      pokemon: pokemon,
+      pokemon,
     },
   };
 };
 
-export default Pokemon;
+export default PokemonPage;
