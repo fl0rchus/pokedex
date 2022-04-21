@@ -21,4 +21,4 @@ Simple app created with NextJS and NextUI
 
 ## Demo
 
-link to demo
+[Link to demo](https://fl0rchus-pokedex.vercel.app)
